@@ -1,0 +1,67 @@
+<!DOCTYPE html><html lang="ko"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1"><title>주간 DART 공시 다이제스트</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#08090c;--card:#10121a;--line:#222634;--txt:#e6e8ee;--mut:#8b91a3;--acc:#5eead4}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--txt);font-family:'Noto Sans KR',sans-serif;line-height:1.6}
+.wrap{max-width:940px;margin:0 auto;padding:26px 18px 90px}
+.kicker{font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:2px;color:var(--acc);text-transform:uppercase}
+h1{font-size:30px;font-weight:900;margin:6px 0 4px;letter-spacing:-.5px}
+.sub{color:var(--mut);font-size:13px;font-family:'JetBrains Mono',monospace}
+.nav{margin-top:12px;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.navlabel{font-size:12px;color:var(--mut);font-family:'JetBrains Mono',monospace}
+.wk{background:var(--card);color:var(--txt);border:1px solid var(--line);border-radius:9px;padding:7px 11px;font-family:'Noto Sans KR';font-size:13px;font-weight:700;cursor:pointer}
+.src.list{color:var(--acc);text-decoration:none;font-size:13px;border:none}
+.wbox{margin:18px 0;padding:18px 20px;border-radius:16px;background:linear-gradient(135deg,#15130a,#0d1830 60%,#1a1030);border:1px solid #3a3320}
+.wbox h2{font-size:14px;letter-spacing:1px;color:#fde68a;margin-bottom:10px;font-family:'JetBrains Mono',monospace}
+.wsum{list-style:none;display:flex;flex-direction:column;gap:7px}
+.wsum li{font-size:13.5px;color:#d3d7e0}.wsum li.empty{color:var(--mut)}
+.sco{font-weight:700;color:#fff}
+.stag{font-size:11px;font-weight:700;padding:1px 7px;border-radius:6px;margin:0 3px}
+.tabs{display:flex;gap:6px;flex-wrap:wrap;margin:18px 0 6px;position:sticky;top:0;background:var(--bg);padding:8px 0;z-index:50;border-bottom:1px solid var(--line)}
+.tab{background:var(--card);color:var(--mut);border:1px solid var(--line);border-radius:10px;padding:8px 16px;font-family:'Noto Sans KR';font-size:14px;font-weight:700;cursor:pointer}
+.tab.active{background:#16344d;color:#67e8f9;border-color:#1d4e6e}.tab:disabled{opacity:.35;cursor:not-allowed}
+.tab .tn{margin-left:6px;font-size:11px;color:var(--mut);font-family:'JetBrains Mono',monospace}
+.overview{margin:16px 0;padding:14px 16px;border-radius:14px;background:#0d0f16;border:1px solid var(--line)}
+.overview h2{font-size:13px;color:var(--acc);margin-bottom:10px;font-family:'JetBrains Mono',monospace;letter-spacing:1px}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{font-size:13px;font-weight:700;padding:6px 12px;border-radius:999px;cursor:pointer;user-select:none}
+.chip:hover{filter:brightness(1.22)}
+.catsec{margin-top:26px;scroll-margin-top:64px}
+.cathead{display:flex;align-items:center;justify-content:space-between;padding-bottom:11px;border-bottom:2px solid var(--c,#333);margin-bottom:13px}
+.catname{font-size:18px;font-weight:900}.catcount{font-size:12px;font-weight:700;padding:3px 10px;border-radius:999px;font-family:'JetBrains Mono',monospace}
+.cards{display:flex;flex-direction:column;gap:10px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:13px 16px}
+.card:hover{border-color:#3d4860}
+.card-head{display:flex;justify-content:space-between;gap:10px;margin-bottom:5px;align-items:center}
+.co{font-size:12.5px;color:var(--mut);font-family:'JetBrains Mono',monospace;display:flex;align-items:center;flex-wrap:wrap}
+.wdb{display:inline-block;background:#1d2740;color:#9db7e8;font-size:11px;font-weight:700;padding:1px 7px;border-radius:6px;margin-right:7px}
+.sec{display:inline-block;font-size:11px;font-weight:700;padding:1px 8px;border-radius:6px;margin-right:8px;border:1px solid;background:#ffffff08}
+.rt{display:flex;align-items:center;gap:8px;white-space:nowrap}
+.st{font-size:13px;letter-spacing:1px}.st.s3{color:#f59e0b}.st.s2{color:#5eead4}.st.s1{color:#4b5160}
+.time{font-size:12px;color:#5b6171;font-family:'JetBrains Mono',monospace}
+.card-title{font-size:15px;font-weight:700;margin-bottom:4px;line-height:1.4}
+.oneline{font-size:13.5px;color:#aeb6c6}
+.dlt{display:inline-block;font-size:11.5px;font-weight:700;padding:1px 7px;border-radius:6px;font-family:'JetBrains Mono',monospace;margin-right:3px}
+.dlt.up{color:#fb923c;background:#fb923c1f;border:1px solid #fb923c55}
+.dlt.down{color:#38bdf8;background:#38bdf81f;border:1px solid #38bdf855}
+.dlt.flat{color:#94a3b8;background:#94a3b81f;border:1px solid #94a3b855}
+.card-links{display:flex;gap:14px;margin-top:9px}
+.src{font-size:12px;color:var(--mut);text-decoration:none;font-family:'JetBrains Mono',monospace;border-bottom:1px dashed #333}
+.src:hover{color:var(--acc);border-color:var(--acc)}.src.tg{color:#5ea9ea}
+.empty-day{color:var(--mut);padding:30px;text-align:center}
+footer{margin-top:46px;padding-top:18px;border-top:1px solid var(--line);font-size:12px;color:#5b6171;line-height:1.7}
+</style></head><body><div class="wrap">
+<div class="kicker">DART WEEKLY DIGEST</div><h1>주간 공시 다이제스트</h1>
+<div class="sub">채널 다트해킹(@darthacking) · 2026.10.19(월)~10.23(금) · 총 2건 · ★★★ 0 / ★★ 1 · 생성 2026-10-19 07:39 KST</div>
+<div class="nav"><span class="navlabel">주차</span> <select class="wk" onchange="if(this.value)location.href=this.value"><option value="../index.html" selected>2026.10.19(월)~10.23(금) · 최신</option><option value="2026-W42.html">2026.10.12(월)~10.16(금)</option><option value="2026-W41.html">2026.10.05(월)~10.09(금)</option><option value="2026-W40.html">2026.09.28(월)~10.02(금)</option><option value="2026-W39.html">2026.09.21(월)~09.25(금)</option><option value="2026-W38.html">2026.09.14(월)~09.18(금)</option><option value="2026-W37.html">2026.09.07(월)~09.11(금)</option><option value="2026-W36.html">2026.08.31(월)~09.04(금)</option><option value="2026-W35.html">2026.08.24(월)~08.28(금)</option><option value="2026-W34.html">2026.08.17(월)~08.21(금)</option><option value="2026-W33.html">2026.08.10(월)~08.14(금)</option><option value="2026-W32.html">2026.08.03(월)~08.07(금)</option><option value="2026-W31.html">2026.07.27(월)~07.31(금)</option><option value="2026-W30.html">2026.07.20(월)~07.24(금)</option><option value="2026-W29.html">2026.07.13(월)~07.17(금)</option><option value="2026-W28.html">2026.07.06(월)~07.10(금)</option><option value="2026-W27.html">2026.06.29(월)~07.03(금)</option><option value="2026-W26.html">2026.06.22(월)~06.26(금)</option><option value="2026-W25.html">2026.06.15(월)~06.19(금)</option><option value="2026-W24.html">2026.06.08(월)~06.12(금)</option><option value="2026-W23.html">2026.06.01(월)~06.05(금)</option></select> <a class="src list" href="index.html">📚 전체 목록</a></div>
+<div class="wbox"><h2>🗓️ 주간 요약</h2><ul class="wsum"><li><span class="st s2" title="중요도 2/3">★★☆</span> <b>[월]</b> <span class="sec" style="color:#94a3b8;border-color:#94a3b855">기타</span><span class="sco">삼성물산</span> <span class="stag" style="background:#2563eb22;color:#93c5fd">🔬사업·R&D·투자판단</span> 여의도 시범아파트 주택재건축정비사업 시공사 선정</li></ul></div>
+<div class="tabs"><button class="tab active" data-p="all" onclick="showTab('all')">📋 주간 전체</button><button class="tab" data-p="d0" onclick="showTab('d0')">월<span class="tn">2</span></button><button class="tab disabled" data-p="d1" onclick="showTab('d1')">화<span class="tn">0</span></button><button class="tab disabled" data-p="d2" onclick="showTab('d2')">수<span class="tn">0</span></button><button class="tab disabled" data-p="d3" onclick="showTab('d3')">목<span class="tn">0</span></button><button class="tab disabled" data-p="d4" onclick="showTab('d4')">금<span class="tn">0</span></button></div><div class="panel" id="panel-all"><div class="overview"><h2>📋 한눈에 — 목적을 누르면 해당 섹션으로 이동</h2><div class="chips"><a class="chip" style="background:#7c3aed22;color:#c4b5fd" onclick="jump('all','stake')">🏛️ 지분변동·대량보유 1</a><a class="chip" style="background:#2563eb22;color:#93c5fd" onclick="jump('all','rnd')">🔬 사업·R&D·투자판단 1</a></div></div><section class="catsec" id="sec-all-stake"><div class="cathead" style="--c:#7c3aed"><span class="catname">🏛️ 지분변동·대량보유</span><span class="catcount" style="background:#7c3aed22;color:#c4b5fd">1건</span></div><div class="cards"><div class="card"><div class="card-head"><span class="co"><span class="wdb">월</span><span class="sec" style="color:#94a3b8;border-color:#94a3b855">기타</span>엠디바이스 · 1,232억 · A226590</span><span class="rt"><span class="st s1" title="중요도 1/3">★☆☆</span><span class="time">07:30</span></span></div><div class="card-title">주식등의대량보유상황보고서(약식)</div><div class="oneline"><span class="dlt down">▼ -3.20%p</span> 포지티브 대아 신기술투자조합 제1호 11.6%→8.4% (단순투자)</div><div class="card-links"><a class="src tg" href="https://t.me/darthacking/154889" target="_blank">텔레그램 ↗</a><a class="src" href="https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20261016000528" target="_blank">DART ↗</a></div></div></div></section><section class="catsec" id="sec-all-rnd"><div class="cathead" style="--c:#2563eb"><span class="catname">🔬 사업·R&D·투자판단</span><span class="catcount" style="background:#2563eb22;color:#93c5fd">1건</span></div><div class="cards"><div class="card"><div class="card-head"><span class="co"><span class="wdb">월</span><span class="sec" style="color:#94a3b8;border-color:#94a3b855">기타</span>삼성물산 · 46조 556억 · A028260</span><span class="rt"><span class="st s2" title="중요도 2/3">★★☆</span><span class="time">07:37</span></span></div><div class="card-title">투자판단관련주요경영사항</div><div class="oneline">여의도 시범아파트 주택재건축정비사업 시공사 선정</div><div class="card-links"><a class="src tg" href="https://t.me/darthacking/154890" target="_blank">텔레그램 ↗</a><a class="src" href="https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20261019800001" target="_blank">DART ↗</a></div></div></div></section></div><div class="panel" id="panel-d0" hidden><div class="overview"><div class="chips"><a class="chip" style="background:#7c3aed22;color:#c4b5fd" onclick="jump('d0','stake')">🏛️ 지분변동·대량보유 1</a><a class="chip" style="background:#2563eb22;color:#93c5fd" onclick="jump('d0','rnd')">🔬 사업·R&D·투자판단 1</a></div></div><section class="catsec" id="sec-d0-stake"><div class="cathead" style="--c:#7c3aed"><span class="catname">🏛️ 지분변동·대량보유</span><span class="catcount" style="background:#7c3aed22;color:#c4b5fd">1건</span></div><div class="cards"><div class="card"><div class="card-head"><span class="co"><span class="sec" style="color:#94a3b8;border-color:#94a3b855">기타</span>엠디바이스 · 1,232억 · A226590</span><span class="rt"><span class="st s1" title="중요도 1/3">★☆☆</span><span class="time">07:30</span></span></div><div class="card-title">주식등의대량보유상황보고서(약식)</div><div class="oneline"><span class="dlt down">▼ -3.20%p</span> 포지티브 대아 신기술투자조합 제1호 11.6%→8.4% (단순투자)</div><div class="card-links"><a class="src tg" href="https://t.me/darthacking/154889" target="_blank">텔레그램 ↗</a><a class="src" href="https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20261016000528" target="_blank">DART ↗</a></div></div></div></section><section class="catsec" id="sec-d0-rnd"><div class="cathead" style="--c:#2563eb"><span class="catname">🔬 사업·R&D·투자판단</span><span class="catcount" style="background:#2563eb22;color:#93c5fd">1건</span></div><div class="cards"><div class="card"><div class="card-head"><span class="co"><span class="sec" style="color:#94a3b8;border-color:#94a3b855">기타</span>삼성물산 · 46조 556억 · A028260</span><span class="rt"><span class="st s2" title="중요도 2/3">★★☆</span><span class="time">07:37</span></span></div><div class="card-title">투자판단관련주요경영사항</div><div class="oneline">여의도 시범아파트 주택재건축정비사업 시공사 선정</div><div class="card-links"><a class="src tg" href="https://t.me/darthacking/154890" target="_blank">텔레그램 ↗</a><a class="src" href="https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20261019800001" target="_blank">DART ↗</a></div></div></div></section></div><div class="panel" id="panel-d1" hidden><div class="empty-day">해당 요일 공시 없음 (또는 아직 미도래)</div></div><div class="panel" id="panel-d2" hidden><div class="empty-day">해당 요일 공시 없음 (또는 아직 미도래)</div></div><div class="panel" id="panel-d3" hidden><div class="empty-day">해당 요일 공시 없음 (또는 아직 미도래)</div></div><div class="panel" id="panel-d4" hidden><div class="empty-day">해당 요일 공시 없음 (또는 아직 미도래)</div></div>
+<footer><div>출처: 텔레그램 다트해킹 / 금융감독원 DART. 별점·섹터는 자동 추정 참고치입니다.</div>
+<div>본 다이제스트는 정보 정리 목적이며 투자 권유가 아닙니다. 투자 판단과 책임은 본인에게 있습니다.</div></footer>
+</div><script>
+function showTab(p){document.querySelectorAll('.panel').forEach(e=>e.hidden=e.id!=='panel-'+p);
+ document.querySelectorAll('.tab').forEach(b=>b.classList.toggle('active',b.dataset.p===p));window.scrollTo({top:0,behavior:'smooth'});}
+function jump(s,k){showTab(s);setTimeout(()=>{var el=document.getElementById('sec-'+s+'-'+k);if(el)el.scrollIntoView({behavior:'smooth',block:'start'});},60);}
+</script></body></html>
